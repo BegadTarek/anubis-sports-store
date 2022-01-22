@@ -50,6 +50,19 @@ export default class ShoppingCart extends Component {
     }
   };
 
+  componentDidMount() {
+    //fetch data from data source
+  }
+
+  componentDidUpdate(prevProps, prevState) {}
+
+  componentWillUnmount() {}
+
+  componentDidCatch(error, info) {
+    console.log(error, info);
+    localStorage.lastError = `${error}\n${JSON.stringify(info)}`;
+  }
+
   render() {
     return (
       <React.Fragment>
