@@ -5,14 +5,7 @@ export default class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [
-        { id: 1, productName: "Astronaut", price: 250, quantity: 0 },
-        { id: 2, productName: "Casette", price: 250, quantity: 0 },
-        { id: 3, productName: "Circle Lights", price: 250, quantity: 0 },
-        { id: 4, productName: "FDI", price: 250, quantity: 0 },
-        { id: 5, productName: "Good Vibes", price: 250, quantity: 0 },
-        { id: 6, productName: "Custom Design", price: 300, quantity: 0 },
-      ],
+      products: [],
     };
   }
 
@@ -50,9 +43,14 @@ export default class ShoppingCart extends Component {
     }
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     //fetch data from data source
-  }
+    const response = await fetch("http://localhost:5000/products", {
+      method: "GET",
+    });
+    const prods = await response.json();
+    this.setState({ products: prods });
+  };
 
   componentDidUpdate(prevProps, prevState) {}
 

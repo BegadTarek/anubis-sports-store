@@ -4,11 +4,26 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", message: "" };
   }
 
-  onLoginClick = () => {
-    console.log(this.state);
+  onLoginClick = async () => {
+    const response = await fetch(
+      `http://localhost:5000/users?email=${this.state.email}&password=${this.state.password}`,
+      { method: "GET" }
+    );
+    const body = await response.json();
+    if (body.length > 0) {
+      this.setState({
+        message: <span className="text-success">Successfully Logged-in</span>,
+      });
+    } else {
+      this.setState({
+        message: (
+          <span className="text-danger">Invalid login, please try again</span>
+        ),
+      });
+    }
   };
 
   render() {
@@ -38,8 +53,9 @@ export default class Login extends Component {
             }}
           />
         </div>
-        <div>
-          <button className="btn btn-primary" onClick={this.onLoginClick}>
+        <div className="float-end m-1">
+          {this.state.message}
+          <button className="btn btn-primary m-1" onClick={this.onLoginClick}>
             Login
           </button>
         </div>

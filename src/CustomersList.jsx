@@ -105,7 +105,7 @@ export default class CustomersList extends Component {
 
           <button className="btn btn-info " onClick={this.onRefreshClick}>
             Refresh
-            <FontAwesomeIcon icon="sync" />
+            <FontAwesomeIcon icon="sync" className="mx-1" />
           </button>
         </h4>
         <table className="table">
