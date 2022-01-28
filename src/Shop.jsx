@@ -1,55 +1,43 @@
 import React, { Component } from "react";
-import CartProduct from "./CartProduct";
+import ShopProduct from "./ShopProduct";
 
-export default class ShoppingCart extends Component {
+export default class Shop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
+      allProducts: [],
     };
   }
 
   handleIncrement = (product, maxValue) => {
-    let updatedProducts = [...this.state.products];
+    let updatedProducts = [...this.state.allProducts];
     let index = updatedProducts.indexOf(product);
     if (updatedProducts[index].quantity < maxValue) {
       updatedProducts[index].quantity++;
       this.setState({
-        products: updatedProducts,
+        allProducts: updatedProducts,
       });
     }
   };
 
   handleDecrement = (product, minValue) => {
-    let updatedProducts = [...this.state.products];
+    let updatedProducts = [...this.state.allProducts];
     let index = updatedProducts.indexOf(product);
     if (updatedProducts[index].quantity > minValue) {
       updatedProducts[index].quantity--;
       this.setState({
-        products: updatedProducts,
-      });
-    }
-  };
-
-  handleDelete = (product) => {
-    let updatedProducts = [...this.state.products];
-    let index = updatedProducts.indexOf(product);
-
-    if (window.confirm("Are you sure you want to remove this item?")) {
-      updatedProducts.splice(index, 1);
-      this.setState({
-        products: updatedProducts,
+        allProducts: updatedProducts,
       });
     }
   };
 
   componentDidMount = async () => {
-    //fetch data from data source
-    const response = await fetch("http://localhost:5000/products", {
+    //fetch full product list
+    const response = await fetch("http://localhost:5000/allProducts", {
       method: "GET",
     });
-    const prods = await response.json();
-    this.setState({ products: prods });
+    const allProds = await response.json();
+    this.setState({ allProducts: allProds });
   };
 
   componentDidCatch(error, info) {
@@ -59,25 +47,26 @@ export default class ShoppingCart extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="container-fluid">
-          <h4 className="m-2">Shopping Cart</h4>
+          <h4 className="m-1">Shop</h4>
 
           <div className="row">
-            {this.state.products.map((prod) => {
+            {this.state.allProducts.map((prod) => {
               return (
-                <CartProduct
+                <ShopProduct
                   key={prod.id}
                   product={prod}
                   onIncrement={this.handleIncrement}
                   onDecrement={this.handleDecrement}
-                  onDelete={this.handleDelete}
-                />
+                >
+                  <button className="btn btn-primary">Buy Now</button>
+                </ShopProduct>
               );
             })}
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class NavBar extends Component {
+export default class NavBar extends Component {
   render() {
     return (
       <React.Fragment>
@@ -31,7 +31,7 @@ class NavBar extends Component {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    to="/dashboard"
+                    to="/shop"
                   >
                     Home
                     <FontAwesomeIcon icon="home" className="mx-1" />
@@ -49,13 +49,11 @@ class NavBar extends Component {
                     <FontAwesomeIcon icon="shopping-cart" className="mx-1" />
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">
-                    Login
-                    <FontAwesomeIcon icon="unlock-alt" className="mx-1" />
-                  </Link>
-                </li>
               </ul>
+              <Link className="nav-link" to="/">
+                Login
+                <FontAwesomeIcon icon="unlock-alt" className="mx-1" />
+              </Link>
             </div>
           </div>
         </nav>
@@ -63,5 +61,3 @@ class NavBar extends Component {
     );
   }
 }
-
-export default NavBar;

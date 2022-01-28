@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default class Product extends Component {
+export default class CartProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,26 +36,7 @@ export default class Product extends Component {
                 <span className="badge bg-secondary m-1">
                   {this.state.product.quantity}
                 </span>
-                <div className="btn-group">
-                  <button
-                    className="btn btn-outline-success"
-                    onClick={() => {
-                      this.props.onIncrement(this.state.product, 10);
-                    }}
-                  >
-                    +
-                  </button>
-                  <button
-                    className="btn btn-outline-success"
-                    onClick={() => {
-                      this.props.onDecrement(this.state.product, 0);
-                    }}
-                  >
-                    -
-                  </button>
-                </div>
               </div>
-              <div className="float-end">{this.props.children}</div>
             </div>
           </div>
         </div>
