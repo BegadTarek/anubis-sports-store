@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/anubis-sports-store/static/css/main.4d4a5923.css",
+    "main.js": "/anubis-sports-store/static/js/main.f67c8b91.js",
+    "index.html": "/anubis-sports-store/index.html",
+    "main.4d4a5923.css.map": "/anubis-sports-store/static/css/main.4d4a5923.css.map",
+    "main.f67c8b91.js.map": "/anubis-sports-store/static/js/main.f67c8b91.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d4a5923.css",
+    "static/js/main.f67c8b91.js"
+  ]
+}
